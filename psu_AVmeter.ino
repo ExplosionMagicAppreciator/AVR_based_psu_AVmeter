@@ -2,15 +2,23 @@
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27,16,2);
 
-int analogInput = A3; 
+int voltageAnalogInput = A0;
+int CurrentAnalogInput = A1; 
   
-int ADC = 0;
+int currentADC = 0;
+int gain = ;
+int maximumCurrent = 5;
+float minimumShuntVoltage = ;
+float shuntVoltage = 0.0;
 float voltage = 0.0;
 float current = 0.0;
 float power = 0.0;
+float R1 = ;
+float R2= ;
  
 void setup(){
-   pinMode(analogInput, INPUT);
+   pinMode(votageAnalogInput, INPUT);
+   pinMode(currentAnalogInput, INPUT);
    lcd.init();
    }
 
@@ -19,9 +27,11 @@ float fmap(float x, float in_min, float in_max, float out_min, float out_max) {
 }
 
 void loop() {
-   ADC = analogRead(analogInput);
-   voltage = fabs(fmap(ADC, 0.0, 1024.0, 0.00, 20.0)); 
-   current = voltage * (/);
+   currentADC = analogRead(currentAnalogInput);
+   voltageADC = analogRead(voltageAnalogInput);
+   ShuntVoltage = fabs(fmap(currentADC, 0.0, 1024.0, 0.00, 5.0)); 
+   current = shuntVoltage * (maximumCurrent/(minimumShuntVoltage*gain));
+   voltage = voltageADC * (5.0/1024)*((R1 + R2)/R2);
    power = voltage * current;
    
    lcd.setCursor(0,0); 
