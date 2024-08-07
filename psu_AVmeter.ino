@@ -13,8 +13,8 @@ float shuntVoltage = 0.0;
 float voltage = 0.0;
 float current = 0.0;
 float power = 0.0;
-float R1 = ;  #divide the voltage down to 5v so that it can be used as an input to the adc 
-float R2= ;
+float R1 = 1000;  #divide the voltage down to 5v so that it can be used as an input to the adc  
+float R2= 330;
  
 void setup(){
    pinMode(votageAnalogInput, INPUT);
